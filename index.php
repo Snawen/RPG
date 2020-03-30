@@ -1,5 +1,6 @@
 <?php
 
+//Caractéristique des personnages 
 class Personnage {
     public $nom;
     public $force;
@@ -13,6 +14,7 @@ class Personnage {
         }
 }
 
+//Fiche des persos
 $perso1 = new Personnage();
 $perso1->nom = "Grüdu";
 $perso1->force= 15;
