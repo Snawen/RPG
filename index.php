@@ -10,7 +10,7 @@ class Personnage {
 
     public function caracteristique () {
         $etat = ($this->mort)? "mort" : "vivant";
-        echo $this->nom ." a une force de ".$this->force." et est au niveau ".$this->level. ", sont état de santé est de: ".$this->sante." points  sur 100, votre héro est donc ".$etat;
+        echo $this->nom ." a une force de ".$this->force." et est au niveau ".$this->level. ", sont état de santé est de: ".$this->sante." points  sur 100, votre héro est donc ".$etat. "<br>";
         }
 
         function getNom(): string {
@@ -55,7 +55,16 @@ class Personnage {
         }
 
         function setMort(int $mort) {
-            $this->mort = $mort;
+            if($this->sante < 1) {
+                $this->mort = true;
+            } else {
+                $this->mort = false;
+            }
+        }
+        
+        function attaquer(Personnage $perso) {
+            $perso->setSante($perso->getSante() - $this->force);
+            $perso->setMort(); 
         }
 }
 
@@ -82,8 +91,13 @@ $perso3->setForce(14);
 $perso3->setLevel(1);
 $perso3->setSante(0);
 
+// Truc en attente 
+/*$perso1 = new Personnage("Grüdu",)
+$perso2 = new Personnage('')
+$perso3 = new Personnage('')*/
 
-
-$perso1->caracteristique();
+echo "Avant l'attaque : ";
 $perso2->caracteristique();
-$perso3->caracteristique();
+$perso1->attaquer($perso2);
+echo "Après l'attaque : ";
+$perso2->caracteristique();
