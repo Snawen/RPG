@@ -54,7 +54,7 @@ class Personnage {
             return $this->mort;
         }
 
-        function setMort(int $mort) {
+        function setMort() {
             if($this->sante < 1) {
                 $this->mort = true;
             } else {
@@ -64,7 +64,11 @@ class Personnage {
         
         function attaquer(Personnage $perso) {
             $perso->setSante($perso->getSante() - $this->force);
-            $perso->setMort(); 
+            $perso->setMort();
+        }
+
+        function lvlup() {
+            $this->level++ ; 
         }
 }
 
@@ -100,4 +104,6 @@ echo "Avant l'attaque : ";
 $perso2->caracteristique();
 $perso1->attaquer($perso2);
 echo "Après l'attaque : ";
+$perso2->lvlup();
 $perso2->caracteristique();
+
